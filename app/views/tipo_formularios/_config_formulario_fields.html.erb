@@ -1,25 +1,15 @@
-<div class="nested-fields form-row align-items-center mb-3">
-  <div class="col">
-    <%= f.input :nombre, label: "Formulario", input_html: { class: 'form-control', disabled: @visible } %>
-  </div>
-  <div class="col-2">
-    <%= f.input :app_siga, label: "Tiene SIGA?", input_html: { class: 'form-control' } %>
-  </div>
-  <div class="col-6">
-    <%= f.input :descripcion, label: "Descripción", input_html: { class: 'form-control' } %>
-  </div>
-  
-  <div class="col-auto">
+<tr class="nested-fields">
+  <td class="text-center">
+    <%= f.input :nombre, label: false, input_html: { class: 'form-control' } %>
+  </td>
+  <td class="text-center">
+    <%= f.input :app_siga, label: false, input_html: { class: 'form-control' } %>
+  </td>
+  <td class="text-center">
+    <%= f.input :descripcion, label: false, input_html: { class: 'form-control' } %>
+  </td>
+  <td class="text-center">
     <%= link_to_remove_association "Eliminar", f, class: "btn btn-danger" %>
     <!-- <= f.input :_destroy, as: :boolean, label: "Eliminar" %> -->
-  </div>
-  
-  <%= f.simple_fields_for :asignacion_formularios do |asig_for| %>
-    <%= render 'asignacion_formulario_fields', f: asig_for %>
-  <% end %>
-
-  
-  <div class="links">
-    <%= link_to_add_association 'Agregar Asignación', f, :asignacion_formularios, class: "btn btn-success" %>
-  </div>
-</div>
+  </td>
+</tr>

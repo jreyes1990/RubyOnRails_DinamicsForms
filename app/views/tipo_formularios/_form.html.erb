@@ -1,41 +1,104 @@
-<%= simple_form_for @tipo_formulario, html: { class: 'container mt-0' } do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <% puts "RECIBIENDO BANDERA: #{flag_tipo_formulario}" 
-    if flag_tipo_formulario.to_i == 0
-      @visible = false
-    elsif flag_tipo_formulario.to_i == 1
-      @visible = true
-    end
-
-    puts "ENVIANDO BANDERA: #{@visible}" 
-    %>
-
-  <div class="form-inputs">
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.input :empresa_id, input_html: { disabled: @visible } %>
+<div class="container mt-0">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <div class="row">
+        <div class="col-md-6 text-left">
+          <h5 class="m-0 font-weight-bold text-primary">Configuración de formulario</h5>
+        </div>
+        <div class="col-md-6 text-right">
+          <%= link_to tipo_formularios_path, class: "btn btn-primary btn-sm" do %>
+            <!-- <span class="icon text-red-50">
+              <i class="fas fa-arrow-circle-left"></i>
+            </span> -->
+            <span class="text">REGRESAR</span>
+          <% end %>
+          
+        </div>
       </div>
-      <div class="col-md-6">
-        <%= f.input :area_id, input_html: { disabled: @visible } %>
-      </div>
-    </div>  
-      <%= f.input :nombre, input_html: { disabled: @visible } %>
-      <%= f.input :descripcion %>
-    
-  </div>
+    </div>
+    <div class="card-body">
+      <%= simple_form_for @tipo_formulario, html: { class: '' } do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-group">
-    <%= f.simple_fields_for :config_formularios, @config_formularios_activos do |cfg_for| %>
-      <%= render 'config_formulario_fields', f: cfg_for %>
-    <% end %>
-  </div>
-  <div class="links">
-    <%= link_to_add_association 'Agregar Configuración', f, :config_formularios, class: "btn btn-success" %>
-  </div>
+        <% puts "RECIBIENDO BANDERA: #{flag_tipo_formulario}" 
+          if flag_tipo_formulario.to_i == 0
+            @visible = false
+          elsif flag_tipo_formulario.to_i == 1
+            @visible = true
+          end
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+          puts "ENVIANDO BANDERA: #{@visible}" 
+          %>
+
+        
+          <div class="form-inputs">
+            <!-- INICIO DEL ENCABEZADO DEL TIPO DE FORMULARIO -->
+            <div class="card-header py-0" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="cardBodyTipoForm" href="#cardBodyTipoForm" style="cursor: pointer; border-radius: 0px; padding: 0px;">
+              <%= content_tag(:h5, 'Tipo de formulario', class: 'text-left font-weight-bold text-primary', style: "padding-left: 20px; padding-top: 10px;" ) %>
+            </div>
+            <div class="card-body collapse show" id="cardBodyTipoForm" style="padding: 0px; padding-top: 0px;">
+              <div class="card shadow mb-12">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col">
+                      <%= f.input :empresa_id, input_html: { disabled: @visible } %>
+                    </div>
+                    <div class="col">
+                      <%= f.input :area_id, input_html: { disabled: @visible } %>
+                    </div>
+                  </div>  
+                  <%= f.input :nombre, input_html: { disabled: @visible } %>
+                  <%= f.input :descripcion %>
+                </div>
+              </div>
+            </div>
+            <br>
+            <!-- FIN DEL ENCABEZADO DEL TIPO DE FORMULARIO -->
+
+            <!-- INICIO DE LA CONFIGURACION DEL FORMULARIO -->
+            <div class="card-header py-0" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="cardBodyConfigForm" href="#cardBodyConfigForm" style="cursor: pointer; border-radius: 0px; padding: 0px;">
+              <%= content_tag(:h5, 'Configuración de formulario', class: 'text-left font-weight-bold text-primary', style: "padding-left: 20px; padding-top: 10px;") %>
+            </div>
+            <div class="card-body collapse show" id="cardBodyConfigForm" style="padding: 0px; padding-top: 0px;">
+              <div class="card shadow mb-12">
+                <br>
+                <div class="col-12 table-responsive">
+                  <table class="table custom-table table-sm" id="config_form" width="100%" cellpadding="0" cellspacing="0">
+                    <thead class="thead-light">
+                      <tr>
+                        <th class="col-3">Formulario</th>
+                        <th class="col-2">¿Tiene AppSiga?</th>
+                        <th class="col">Descripción</th>
+                        <th class="col-auto"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% f.object.config_formularios.where(estado: 'A').each do |config_formulario_activos| %>
+                        <%= f.simple_fields_for :config_formularios, config_formulario_activos do |cfg_for| %>
+                          <%= render 'config_formulario_fields', f: cfg_for %>
+                        <% end %>
+                      <% end %>
+                    </tbody>
+                  </table>
+                  <div class="row">
+                    <div class="col">
+                      <div class="text-right">
+                        <%= link_to_add_association 'Agregar Configuración', f, :config_formularios, data: {"association-insertion-node" => "#config_form tbody", "association-insertion-method" => "append"}, class: "btn btn-success" %>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                </div>
+              </div>
+            </div>
+            <!-- FIN DE LA CONFIGURACION DEL FORMULARIO -->
+
+          </div>
+        <div class="form-actions">
+          <%= f.button :submit %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
