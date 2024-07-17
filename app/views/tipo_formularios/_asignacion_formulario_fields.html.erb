@@ -1,0 +1,17 @@
+<div class="nested-fields form-row align-items-center mb-3">
+  <div class="col-3">
+    <%= f.input :departamento_id, label: "Departamento", input_html: { class: 'form-control', disabled: false } %>
+  </div>
+  <div class="col-2">
+    <%= f.input :seccion_id, label: "Sección", input_html: { class: 'form-control' } %>
+  </div>
+  <div class="col-2">
+    <%= f.input :subseccion_id, label: "Sub-Sección", input_html: { class: 'form-control' } %>
+  </div>
+  <div class="col-3">
+    <%= f.input :empleado_id, label: "Empleado", input_html: { class: 'form-control' } %>
+  </div>
+  <div class="col-auto">
+    <%= link_to_remove_association "Eliminar", f, class: "btn btn-danger" %>
+  </div>
+</div>

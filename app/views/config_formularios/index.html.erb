@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Config Formularios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Empresa</th>
+      <th>Area</th>
+      <th>Tipo formulario</th>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th>App siga</th>
+      <th>User created</th>
+      <th>User created</th>
+      <th>Usr grab</th>
+      <th>Usr modi</th>
+      <th>Estado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @config_formularios.each do |config_formulario| %>
+      <tr>
+        <td><%= config_formulario.empresa_id %></td>
+        <td><%= config_formulario.area_id %></td>
+        <td><%= config_formulario.tipo_formulario_id %></td>
+        <td><%= config_formulario.nombre %></td>
+        <td><%= config_formulario.descripcion %></td>
+        <td><%= config_formulario.app_siga %></td>
+        <td><%= config_formulario.user_created_id %></td>
+        <td><%= config_formulario.user_created_id %></td>
+        <td><%= config_formulario.usr_grab %></td>
+        <td><%= config_formulario.usr_modi %></td>
+        <td><%= config_formulario.estado %></td>
+        <td><%= link_to 'Show', config_formulario %></td>
+        <td><%= link_to 'Edit', edit_config_formulario_path(config_formulario) %></td>
+        <td><%= link_to 'Destroy', config_formulario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Config Formulario', new_config_formulario_path %>

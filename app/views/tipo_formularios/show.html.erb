@@ -1,0 +1,103 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Empresa:</strong>
+  <%= @tipo_formulario.empresa_id %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @tipo_formulario.area_id %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @tipo_formulario.nombre %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @tipo_formulario.descripcion %>
+</p>
+
+<p>
+  <strong>User created:</strong>
+  <%= @tipo_formulario.user_created_id %>
+</p>
+
+<p>
+  <strong>User created:</strong>
+  <%= @tipo_formulario.user_created_id %>
+</p>
+
+<p>
+  <strong>Usr grab:</strong>
+  <%= @tipo_formulario.usr_grab %>
+</p>
+
+<p>
+  <strong>Usr modi:</strong>
+  <%= @tipo_formulario.usr_modi %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @tipo_formulario.estado %>
+</p>
+
+<h2>Configuraciones</h2>
+<% @tipo_formulario.config_formularios.each do |config_formulario| %>
+  <div class="config-formulario">
+    <p>
+      <strong>Nombre de Configuración:</strong>
+      <%= config_formulario.nombre %>
+    </p>
+
+    <p>
+      <strong>Descripción:</strong>
+      <%= config_formulario.descripcion %>
+    </p>
+
+    <p>
+      <strong>Estado:</strong>
+      <%= config_formulario.estado %>
+    </p>
+
+    <h3>Asignaciones</h3>
+    <% config_formulario.asignacion_formularios.each do |asignacion_formulario| %>
+      <div class="asignacion-formulario">
+        <p>
+          <strong>Departamento:</strong>
+          <%= asignacion_formulario.departamento_id %>
+        </p>
+
+        <p>
+          <strong>Sección:</strong>
+          <%= asignacion_formulario.seccion_id %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_tipo_formulario_path(@tipo_formulario) %> |
+<%= link_to 'Back', tipo_formularios_path %>
+
+<h2>Replicar Formulario</h2>
+<%= form_with url: new_tipo_formulario_path, method: :get, local: true do %>
+  <div class="field">
+    <%= hidden_field_tag :id, @tipo_formulario.id %>
+    <%= label_tag :empresa_id, "Empresa" %>
+    <%= text_field_tag :empresa_id, nil, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= label_tag :area_id, "Área" %>
+    <%= text_field_tag :area_id, nil, class: 'form-control' %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Replicar Formulario", class: 'btn btn-warning', flag_tipo_formulario: 3 %>
+  </div>
+<% end %>
+
+<h2>Replicar Todos los Formularios</h2>
+<%= link_to "Replicar Todos los Formularios", replicate_all_tipo_formulario_path, method: :post, class: 'btn btn-warning' %>

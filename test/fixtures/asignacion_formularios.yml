@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  config_formulario: one
+  empresa_id: 1
+  area_id: 1
+  departamento_id: 1
+  seccion_id: 1
+  subseccion_id: 1
+  empleado_id: 1
+  user_created_id: 1
+  user_updated_id: 1
+  usr_grab: MyString
+  usr_modi: MyString
+  estado: MyString
+
+two:
+  config_formulario: two
+  empresa_id: 1
+  area_id: 1
+  departamento_id: 1
+  seccion_id: 1
+  subseccion_id: 1
+  empleado_id: 1
+  user_created_id: 1
+  user_updated_id: 1
+  usr_grab: MyString
+  usr_modi: MyString
+  estado: MyString

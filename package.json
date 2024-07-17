@@ -1,0 +1,17 @@
+{
+  "name": "app_dinamics_forms",
+  "private": true,
+  "dependencies": {
+    "@nathanvda/cocoon": "^1.2.14",
+    "@popperjs/core": "^2.11.8",
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "4.3.0",
+    "@ttskch/select2-bootstrap4-theme": "^1.5.2",
+    "jquery": "^3.7.1",
+    "startbootstrap-sb-admin-2": "^4.1.4",
+    "turbolinks": "^5.2.0"
+  },
+  "version": "0.1.0"
+}
