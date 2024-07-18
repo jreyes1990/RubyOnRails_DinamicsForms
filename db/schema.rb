@@ -12,55 +12,61 @@
 
 ActiveRecord::Schema.define(version: 2024_07_16_203008) do
 
-  create_table "asignacion_formularios", force: :cascade do |t|
-    t.integer "config_formulario_id", null: false
-    t.integer "empresa_id"
-    t.integer "area_id"
-    t.integer "departamento_id"
-    t.integer "seccion_id"
-    t.integer "subseccion_id"
-    t.integer "empleado_id"
-    t.integer "user_created_id"
-    t.integer "user_updated_id"
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "asignacion_formularios", id: :serial, comment: "Módulo Asignación de Formulario", force: :cascade do |t|
+    t.bigint "config_formulario_id", null: false, comment: "Identificador de la configuración de formulario para la asignación del formulario"
+    t.integer "empresa_id", null: false, comment: "Identificador de la empresa"
+    t.integer "area_id", null: false, comment: "Identificador del área"
+    t.integer "departamento_id", default: 0, null: false, comment: "Identificador del departamento"
+    t.integer "seccion_id", default: 0, null: false, comment: "Identificador de la sección"
+    t.integer "subseccion_id", default: 0, null: false, comment: "Identificador de la subsección"
+    t.integer "empleado_id", comment: "Identificador del empleado"
+    t.integer "user_created_id", null: false, comment: "Identificador del usuario que realiza el registro desde la aplicación web"
+    t.integer "user_updated_id", comment: "Identificador del usuario que realiza la actualización desde la aplicación web"
     t.string "usr_grab", limit: 50
     t.string "usr_modi", limit: 50
-    t.string "estado", limit: 5
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["config_formulario_id"], name: "index_asignacion_formularios_on_config_formulario_id"
+    t.string "estado", limit: 5, default: "A", comment: "Estado de la asignación del formulario: [A]: Activo;  [I]: Inactivo"
+    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "Fecha y hora de creación del registro"
+    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "Fecha y hora de la última actualización del registro"
+    t.index ["config_formulario_id"], name: "idx_asignaForm_configForm", unique: true
+    t.index ["empresa_id", "area_id", "departamento_id", "seccion_id", "subseccion_id", "empleado_id"], name: "idx_asignaForm", unique: true
   end
 
-  create_table "config_formularios", force: :cascade do |t|
-    t.integer "empresa_id"
-    t.integer "area_id"
-    t.integer "tipo_formulario_id", null: false
-    t.string "nombre", limit: 5
-    t.string "descripcion", limit: 100
-    t.string "app_siga", limit: 5
-    t.integer "user_created_id"
-    t.integer "user_updated_id"
+  create_table "config_formularios", id: :serial, comment: "Catálogo Configuración de Formulario", force: :cascade do |t|
+    t.bigint "tipo_formulario_id", null: false, comment: "Identificador del tipo de formulario para la configuración del formulario"
+    t.integer "empresa_id", null: false, comment: "Identificador de la empresa"
+    t.integer "area_id", null: false, comment: "Identificador del área"
+    t.string "nombre", limit: 5, null: false, comment: "Nombre de la configuración del formulario"
+    t.string "descripcion", limit: 100, comment: "Descripción general de la configuración del formulario"
+    t.string "app_siga", limit: 5, default: "N", comment: "Verifica si la configuración tiene SIGA: [A]: Activo;  [I]: Inactivo"
+    t.integer "user_created_id", null: false, comment: "Identificador del usuario que realiza el registro desde la aplicación web"
+    t.integer "user_updated_id", comment: "Identificador del usuario que realiza la actualización desde la aplicación web"
     t.string "usr_grab", limit: 50
     t.string "usr_modi", limit: 50
-    t.string "estado", limit: 5
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["tipo_formulario_id"], name: "index_config_formularios_on_tipo_formulario_id"
+    t.string "estado", limit: 5, default: "A", comment: "Estado de la configuración del formulario: [A]: Activo;  [I]: Inactivo"
+    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "Fecha y hora de creación del registro"
+    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "Fecha y hora de la última actualización del registro"
+    t.index ["empresa_id", "area_id"], name: "idx_configForm", unique: true
+    t.index ["tipo_formulario_id"], name: "idx_configForm_tipoForm", unique: true
   end
 
-  create_table "tipo_formularios", force: :cascade do |t|
-    t.integer "empresa_id"
-    t.integer "area_id"
-    t.string "nombre", limit: 5
-    t.string "descripcion", limit: 100
-    t.integer "user_created_id"
-    t.integer "user_updated_id"
+  create_table "tipo_formularios", id: :serial, comment: "Catálogo Tipo de Formulario", force: :cascade do |t|
+    t.integer "empresa_id", null: false, comment: "Identificador de la empresa"
+    t.integer "area_id", null: false, comment: "Identificador del área"
+    t.string "nombre", limit: 5, null: false, comment: "Nombre de tipo de formulario"
+    t.string "descripcion", limit: 100, comment: "Descripción general del tipo de formulario"
+    t.integer "user_created_id", null: false, comment: "Identificador del usuario que realiza el registro desde la aplicación web"
+    t.integer "user_updated_id", comment: "Identificador del usuario que realiza la actualización desde la aplicación web"
     t.string "usr_grab", limit: 50
     t.string "usr_modi", limit: 50
-    t.string "estado", limit: 5
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.string "estado", limit: 5, default: "A", comment: "Estado del tipo de formulario: [A]: Activo;  [I]: Inactivo"
+    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "Fecha y hora de creación del registro"
+    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "Fecha y hora de la última actualización del registro"
+    t.index ["empresa_id", "area_id"], name: "idx_tipoForm_areaEmp", unique: true
   end
 
-  add_foreign_key "asignacion_formularios", "config_formularios"
-  add_foreign_key "config_formularios", "tipo_formularios"
+  add_foreign_key "asignacion_formularios", "config_formularios", name: "fk_asignaForm_configForm"
+  add_foreign_key "config_formularios", "tipo_formularios", name: "fk_configForm_tipoForm"
 end
