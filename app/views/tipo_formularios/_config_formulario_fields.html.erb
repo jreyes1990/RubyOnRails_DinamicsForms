@@ -13,19 +13,3 @@
     <!-- <= f.input :_destroy, as: :boolean, label: "Eliminar" %> -->
   </td>
 </tr>
-<!-- INICIO DE LA ASIGNACIÓN DEL FORMULARIO -->
-<div class="card-header py-0" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="cardBodyAsigForm" href="#cardBodyAsigForm" style="cursor: pointer; border-radius: 0px; padding: 0px;">
-  <%= content_tag(:h5, 'Asignación de formulario', class: 'text-left font-weight-bold text-primary', style: "padding-left: 20px; padding-top: 10px;") %>
-</div>
-<div class="card-body collapse show" id="cardBodyAsigForm" style="padding: 0px; padding-top: 0px;">
-  <div class="card shadow mb-12">
-    <div class="col-12 table-responsive">
-      <table class="table custom-table table-sm" id="detalle_transitorio" width="100%" cellpadding="0" cellspacing="0" >
-        <%= f.simple_fields_for :asignacion_formularios do |asig_for| %>
-            <%= render 'asignacion_formulario_fields', f: asig_for %>
-        <% end %>
-      </table>
-    </div>
-  </div>
-</div>
-<!-- FIN DE LA ASIGNACIÓN DEL FORMULARIO -->

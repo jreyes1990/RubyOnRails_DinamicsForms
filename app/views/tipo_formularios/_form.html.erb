@@ -77,6 +77,33 @@
                       <% f.object.config_formularios.where(estado: 'A').each do |config_formulario_activos| %>
                         <%= f.simple_fields_for :config_formularios, config_formulario_activos do |cfg_for| %>
                           <%= render 'config_formulario_fields', f: cfg_for %>
+
+                          <!-- INICIO DE LA ASIGNACIÓN DEL FORMULARIO -->
+                          <table class="table custom-table table-sm" id="asig_form" width="100%" cellpadding="0" cellspacing="0" >
+                            <thead class="thead-light">
+                              <tr>
+                                <th class="col-3">Departamento</th>
+                                <th class="col-2">Seccion</th>
+                                <th class="col-2">SubSeccion</th>
+                                <th class="col-3">Empleado</th>
+                                <th class="col-auto"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <%= cfg_for.simple_fields_for :asignacion_formularios do |asig_for| %>
+                                  <%= render 'asignacion_formulario_fields', f: asig_for %>
+                              <% end %>
+                            </tbody>
+                          </table>
+                          <div class="row">
+                            <div class="col">
+                              <div class="text-right">
+                                <%= link_to_add_association 'Agregar Asignación', cfg_for, :asignacion_formularios, data: {"association-insertion-node" => "#asig_form tbody", "association-insertion-method" => "append"}, class: "btn btn-success" %>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- FIN DE LA ASIGNACIÓN DEL FORMULARIO -->
+
                         <% end %>
                       <% end %>
                     </tbody>
