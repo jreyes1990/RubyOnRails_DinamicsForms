@@ -87,3 +87,13 @@ production:
   database: form_dinamics_production
   username: form_dinamics
   password: <%= ENV['FORM_DINAMICS_DATABASE_PASSWORD'] %>
+
+
+oracle_development:
+  adapter: oracle_enhanced
+  database: desamt
+  username: SIG
+  password: hn89-cPx
+  host: 100.10.10.76
+  port: 1521
+  service_name: desamt
