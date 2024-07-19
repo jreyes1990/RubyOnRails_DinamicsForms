@@ -45,6 +45,9 @@ GEM
     activerecord (6.0.6.1)
       activemodel (= 6.0.6.1)
       activesupport (= 6.0.6.1)
+    activerecord-oracle_enhanced-adapter (6.0.6)
+      activerecord (~> 6.0.0)
+      ruby-plsql (>= 0.6.0)
     activestorage (6.0.6.1)
       actionpack (= 6.0.6.1)
       activejob (= 6.0.6.1)
@@ -159,6 +162,8 @@ GEM
     regexp_parser (2.9.2)
     rexml (3.3.1)
       strscan
+    ruby-oci8 (2.2.12)
+    ruby-plsql (0.8.0)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -223,6 +228,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activerecord-oracle_enhanced-adapter
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
@@ -232,6 +238,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (~> 6.0.6)
+  ruby-oci8
   sass-rails (>= 6)
   selenium-webdriver
   simple_form
