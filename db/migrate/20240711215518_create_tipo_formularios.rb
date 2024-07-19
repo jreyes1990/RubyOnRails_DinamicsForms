@@ -4,7 +4,7 @@ class CreateTipoFormularios < ActiveRecord::Migration[6.0]
       t.serial :id, null: false, comment: "Identificador de la llave primaria"
       t.integer :empresa_id, null: false, comment: "Identificador de la empresa"
       t.integer :area_id, null: false, comment: "Identificador del área"
-      t.string :nombre, limit: 5, null: false, comment: "Nombre de tipo de formulario"
+      t.string :nombre, limit: 50, null: false, comment: "Nombre de tipo de formulario"
       t.string :descripcion, limit: 100, null: true, comment: "Descripción general del tipo de formulario"
       t.integer :user_created_id, null: false, comment: "Identificador del usuario que realiza el registro desde la aplicación web"
       t.integer :user_updated_id, null: true, comment: "Identificador del usuario que realiza la actualización desde la aplicación web"
@@ -20,12 +20,12 @@ class CreateTipoFormularios < ActiveRecord::Migration[6.0]
     # Crear el índice y la restricción de clave primaria con un nombre específico
     execute <<-SQL
       alter table tipo_formularios add
-        constraint pk_tipoForm 
+        constraint pk_tipoForm
         primary key (id)
     SQL
 
     # Agregar el índice único con el nombre personalizado
-    add_index :tipo_formularios, [:empresa_id, :area_id], name: "idx_tipoForm_areaEmp", unique: true
+    add_index :tipo_formularios, [:empresa_id, :area_id], name: "idx_tipoForm_areaEmp", unique: false
 
     # Agregar el constraint CHECK sin el punto y coma al final
     execute <<-SQL

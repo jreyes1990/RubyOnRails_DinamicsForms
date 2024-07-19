@@ -1,20 +1,17 @@
-<div class="container-fluid mt-3">
+<div class="container mt-3">
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <div class="row">
-        <div class="col-md-6 text-left">
+        <div class="col text-left">
           <h5 class="m-0 font-weight-bold text-primary">Configuración de formulario</h5>
         </div>
-        <div class="col-md-6 text-right">
+        <div class="col text-right">
           <%= link_to tipo_formularios_path, class: "btn btn-primary btn-sm" do %>
-            <!-- 
             <span class="icon text-red-50">
               <i class="fas fa-arrow-circle-left"></i>
             </span> 
-            -->
             <span class="text">REGRESAR</span>
           <% end %>
-          
         </div>
       </div>
     </div>
@@ -33,9 +30,8 @@
 
         
           <div class="form-inputs">
-            <!-- INICIO DEL ENCABEZADO DEL TIPO DE FORMULARIO -->
             <% unique_tipo_form_id = "tipo_form_#{f.object_id}" %>
-
+            <!-- INICIO DEL ENCABEZADO DEL TIPO DE FORMULARIO -->
             <div class="card-header py-0" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="cardBody<%= unique_tipo_form_id %>" href="#cardBody<%= unique_tipo_form_id %>" style="cursor: pointer; border-radius: 0px; padding: 0px;">
               <%= content_tag(:h5, 'Tipo de formulario', class: 'text-left font-weight-bold text-primary', style: "padding-left: 20px; padding-top: 10px;" ) %>
             </div>
@@ -60,7 +56,6 @@
 
             <!-- INICIO DE LA CONFIGURACION DEL FORMULARIO -->
             <% unique_config_id = "config_form_#{f.object_id}" %>
-
             <div class="card-header py-0" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="cardBody<%= unique_config_id %>" href="#cardBody<%= unique_config_id %>" style="cursor: pointer; border-radius: 0px; padding: 0px;">
               <%= content_tag(:h5, 'Configuración y Asignación de formulario', class: 'text-left font-weight-bold text-primary', style: "padding-left: 20px; padding-top: 10px;") %>
             </div>
@@ -84,7 +79,7 @@
                         </thead>
                         <tbody>
                           <%= render 'config_formulario_fields', f: cfg_for %>
-                          <% unique_id = "asig_form_#{config_formulario_activos.object_id}" %>
+                          <% unique_id = "asig_form_#{cfg_for.object_id}" %>
                               
                               
                               <!-- INICIO DE LA ASIGNACIÓN DEL FORMULARIO -->

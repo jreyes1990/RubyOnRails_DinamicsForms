@@ -23,7 +23,7 @@ class CreateAsignacionFormularios < ActiveRecord::Migration[6.0]
     # Crear el índice y la restricción de clave primaria con un nombre específico
     execute <<-SQL
       alter table asignacion_formularios add
-        constraint pk_asignaForm 
+        constraint pk_asignaForm
         primary key (id)
     SQL
 
@@ -31,8 +31,8 @@ class CreateAsignacionFormularios < ActiveRecord::Migration[6.0]
     add_foreign_key :asignacion_formularios, :config_formularios, column: :config_formulario_id, name: 'fk_asignaForm_configForm'
 
     # Agregar el índice único con el nombre personalizado
-    add_index :asignacion_formularios, [:config_formulario_id], name: "idx_asignaForm_configForm", unique: true
-    add_index :asignacion_formularios, [:empresa_id, :area_id, :departamento_id, :seccion_id, :subseccion_id, :empleado_id], name: "idx_asignaForm", unique: true
+    add_index :asignacion_formularios, [:config_formulario_id], name: "idx_asignaForm_configForm", unique: false
+    add_index :asignacion_formularios, [:empresa_id, :area_id, :departamento_id, :seccion_id, :subseccion_id, :empleado_id], name: "idx_asignaForm", unique: false
 
     # Agregar el constraint CHECK sin el punto y coma al final
     execute <<-SQL

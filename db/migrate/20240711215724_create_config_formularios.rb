@@ -5,7 +5,7 @@ class CreateConfigFormularios < ActiveRecord::Migration[6.0]
       t.references :tipo_formulario, null: false, foreign_key: false, index: false, comment: "Identificador del tipo de formulario para la configuración del formulario"
       t.integer :empresa_id, null: false, comment: "Identificador de la empresa"
       t.integer :area_id, null: false, comment: "Identificador del área"
-      t.string :nombre, limit: 5, null: false, comment: "Nombre de la configuración del formulario"
+      t.string :nombre, limit: 50, null: false, comment: "Nombre de la configuración del formulario"
       t.string :descripcion, limit: 100, null: true, comment: "Descripción general de la configuración del formulario"
       t.string :app_siga, limit: 5, default: "N", comment: "Verifica si la configuración tiene SIGA: [A]: Activo;  [I]: Inactivo"
       t.integer :user_created_id, null: false, comment: "Identificador del usuario que realiza el registro desde la aplicación web"
@@ -22,7 +22,7 @@ class CreateConfigFormularios < ActiveRecord::Migration[6.0]
     # Crear el índice y la restricción de clave primaria con un nombre específico
     execute <<-SQL
       alter table config_formularios add
-        constraint pk_configForm 
+        constraint pk_configForm
         primary key (id)
     SQL
 
@@ -30,9 +30,9 @@ class CreateConfigFormularios < ActiveRecord::Migration[6.0]
     add_foreign_key :config_formularios, :tipo_formularios, column: :tipo_formulario_id, name: 'fk_configForm_tipoForm'
 
     # Agregar el índice único con el nombre personalizado
-    # add_index :config_formularios, [:tipo_formulario_id], name: "idx_configForm_tipoForm", unique: true
-    # add_index :config_formularios, [:empresa_id, :area_id], name: "idx_configForm", unique: true
-    
+    add_index :config_formularios, [:tipo_formulario_id], name: "idx_configForm_tipoForm", unique: false
+    add_index :config_formularios, [:empresa_id, :area_id], name: "idx_configForm", unique: false
+
     # Agregar el constraint CHECK sin el punto y coma al final
     execute <<-SQL
       alter table config_formularios add
