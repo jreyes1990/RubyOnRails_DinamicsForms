@@ -3,6 +3,9 @@ class TipoFormulario < ApplicationRecord
 
   accepts_nested_attributes_for :config_formularios, reject_if: :all_blank, allow_destroy: true, update_only: true
 
+  # Validaciones
+  validates :nombre, presence: { message: "no puede estar en blanco"}
+
   before_save :assign_values_to_config_formularios
 
   private

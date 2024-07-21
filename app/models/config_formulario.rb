@@ -20,11 +20,11 @@ class ConfigFormulario < ApplicationRecord
   private
   def descripcion_length_validation
     return if descripcion.blank?
-    
+
     if descripcion.present? && descripcion.length < 10
       errors.add(:descripcion, "es demasiado corta (mínimo son 10 caracteres)")
     elsif descripcion.present? && descripcion.length > 255
-      errors.add(:descripcion, "es demasiado larga (máximo son 255 caracteres)")  
+      errors.add(:descripcion, "es demasiado larga (máximo son 255 caracteres)")
     end
   end
 

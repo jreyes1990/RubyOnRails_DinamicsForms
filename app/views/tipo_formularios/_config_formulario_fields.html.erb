@@ -1,14 +1,26 @@
-<tr class="nested-fields">
-  <td class="text-center">
-    <%= f.input :nombre, label: false, input_html: { class: 'form-control' } %>
-  </td>
-  <td class="text-center">
-    <%= f.input :app_siga, label: false, input_html: { class: 'form-control' } %>
-  </td>
-  <td class="text-center">
-    <%= f.input :descripcion, label: false, input_html: { class: 'form-control' } %>
-  </td>
-  <td class="text-center">
-    <%= link_to_remove_association "Eliminar", f, class: "btn btn-danger" %>
-  </td>
-</tr>
+<table class="table custom-table table-sm"  width="100%" cellpadding="0" cellspacing="0">        
+  <thead class="thead-light">
+    <tr>
+      <th class="col-3">Formulario</th>
+      <th class="col-3">¿Tiene AppSiga?</th>
+      <th class="col">Descripción</th>
+      <th class="col-auto"></th>
+    </tr>  
+  </thead>
+  <tbody>
+    <tr class="nested-fields">
+      <td class="text-center">
+        <%= f.input :nombre, label: false, input_html: { class: 'form-control' } %>
+      </td>
+      <td class="text-center">
+        <%= f.input :app_siga, label: false, input_html: { class: 'form-control' } %>
+      </td>
+      <td class="text-center">
+        <%= f.input :descripcion, label: false, input_html: { class: 'form-control' } %>
+      </td>
+      <td class="text-center">
+        <%= link_to_remove_association "Eliminar", f, class: "btn btn-danger" %>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,11 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Tipo Formularios</h1>
-<% mp = PgEmpresa.where(status: "A")
-   mp.each do |mp|
+<% 
+=begin
+  mp = PgEmpresa.where(status: "A")
+  mp.each do |mp|
     puts ("Empresa: #{mp.descripcion}")
-   end
-   
+  end
+=end
 %>
 
 <table>
