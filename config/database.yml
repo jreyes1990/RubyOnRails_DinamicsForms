@@ -89,11 +89,20 @@ production:
   password: <%= ENV['FORM_DINAMICS_DATABASE_PASSWORD'] %>
 
 
+# Conexión a la base de datos Oracle - Interno
 oracle_development:
   adapter: oracle_enhanced
   database: desamt
-  username: SIG
-  password: hn89-cPx
+  username: jreyes
+  password: jreyes
   host: 100.10.10.76
   port: 1521
   service_name: desamt
+
+
+# Conexión a la base de datos Oracle - Externo
+oracle_cloud_development:
+  adapter: oracle_enhanced
+  database: (DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=150.136.153.119)(PORT=1521)))(CONNECT_DATA=(SID=desamt)))
+  username: jreyes # SIG
+  password: jreyes # hn89-cPx

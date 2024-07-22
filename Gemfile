@@ -10,6 +10,8 @@ gem 'pg', '>= 0.18', '< 2.0'
 # Configurar la conexión a Oracle
 gem 'ruby-oci8'
 gem 'activerecord-oracle_enhanced-adapter'
+# Configuración de llaves primarias
+gem 'composite_primary_keys'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
