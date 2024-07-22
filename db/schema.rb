@@ -30,8 +30,7 @@ ActiveRecord::Schema.define(version: 2024_07_16_203008) do
     t.string "estado", limit: 5, default: "A", comment: "Estado de la asignación del formulario: [A]: Activo;  [I]: Inactivo"
     t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "Fecha y hora de creación del registro"
     t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "Fecha y hora de la última actualización del registro"
-    t.index ["config_formulario_id"], name: "idx_asignaForm_configForm"
-    t.index ["empresa_id", "area_id", "departamento_id", "seccion_id", "subseccion_id", "empleado_id"], name: "idx_asignaForm"
+    t.index ["config_formulario_id", "empresa_id", "area_id", "departamento_id", "seccion_id", "subseccion_id", "empleado_id"], name: "idx_asignaForm_configForm", unique: true
   end
 
   create_table "config_formularios", id: :serial, comment: "Catálogo Configuración de Formulario", force: :cascade do |t|

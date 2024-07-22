@@ -8,7 +8,9 @@ class ConfigFormulario < ApplicationRecord
   validates :nombre, presence: true, length: { maximum: 50 }
   validates :app_siga, inclusion: { in: %w(S N), message: "%{value} no es una opción válida" }
   validates :descripcion, presence: { message: "no puede estar en blanco"}
+  #Validaciones personalizadas
   validate :descripcion_length_validation
+  # validate :custom_uniqueness_validation
 
   before_save :assign_values_to_asignacion_formularios
 
@@ -25,6 +27,29 @@ class ConfigFormulario < ApplicationRecord
       errors.add(:descripcion, "es demasiado corta (mínimo son 10 caracteres)")
     elsif descripcion.present? && descripcion.length > 255
       errors.add(:descripcion, "es demasiado larga (máximo son 255 caracteres)")
+    end
+  end
+
+  # def custom_uniqueness_validation
+  #   error_messages = []
+  #   asignacion_formularios.each do |asignacion_formulario|
+  #     unless asignacion_formulario.valid?
+  #       asignacion_formulario.errors.full_messages.each do |msg|
+  #         error_messages << msg unless error_messages.include?(msg)
+  #       end
+  #     end
+  #   end
+  #   errors.add(:base, error_messages.uniq.join(", ")) unless error_messages.empty?
+  # end
+
+  def custom_uniqueness_validation
+    asignacion_formularios.each do |asignacion_formulario|
+      if asignacion_formulario.invalid?
+        asignacion_formulario.errors.each do |attribute, message|
+          processed_message = message.sub("Asignacion formularios ", "")
+          errors.add(attribute, processed_message) unless errors[attribute].include?(processed_message)
+        end
+      end
     end
   end
 
