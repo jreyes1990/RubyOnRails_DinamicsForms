@@ -1,0 +1,16 @@
+<!-- app/views/config_formularios/_new_asignacion.html.erb -->
+<div id="new_asignacion_template" style="display:none;">
+  <%= fields_for :asignacion_formularios, AsignacionFormulario.new, child_index: "NEW_RECORD" do |asignacion_form| %>
+    <div class="nested-fields">
+      <%= asignacion_form.label :departamento_id %>
+      <%= asignacion_form.text_field :departamento_id %>
+      <%= asignacion_form.label :seccion_id %>
+      <%= asignacion_form.text_field :seccion_id %>
+      <%= asignacion_form.label :subseccion_id %>
+      <%= asignacion_form.text_field :subseccion_id %>
+      <%= asignacion_form.label :empleado_id %>
+      <%= asignacion_form.text_field :empleado_id %>
+      <%= link_to "Eliminar", '#', class: 'remove_fields' %>
+    </div>
+  <% end %>
+</div>

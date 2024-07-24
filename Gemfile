@@ -12,6 +12,8 @@ gem 'ruby-oci8'
 gem 'activerecord-oracle_enhanced-adapter'
 # Configuración de llaves primarias
 gem 'composite_primary_keys'
+# gema para manejo de sessiones
+# gem 'activerecord-session_store'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server

@@ -1,0 +1,67 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Formularios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Config formulario</th>
+      <th>Empresa</th>
+      <th>Area</th>
+      <th>Departamento</th>
+      <th>Seccion</th>
+      <th>Subseccion</th>
+      <th>Labor oracle</th>
+      <th>Labor madre</th>
+      <th>Ot</th>
+      <th>Fecha inicio ejecucion</th>
+      <th>Fecha fin ejecucion</th>
+      <th>Coord latitud</th>
+      <th>Coord longitud</th>
+      <th>Empleado</th>
+      <th>Usuario</th>
+      <th>Fecha sincronizacion</th>
+      <th>User created</th>
+      <th>User updated</th>
+      <th>Usr grab</th>
+      <th>Usr modi</th>
+      <th>Estado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @formularios.each do |formulario| %>
+      <tr>
+        <td><%= formulario.config_formulario_id %></td>
+        <td><%= formulario.empresa_id %></td>
+        <td><%= formulario.area_id %></td>
+        <td><%= formulario.departamento_id %></td>
+        <td><%= formulario.seccion_id %></td>
+        <td><%= formulario.subseccion_id %></td>
+        <td><%= formulario.labor_oracle_id %></td>
+        <td><%= formulario.labor_madre_id %></td>
+        <td><%= formulario.ot_id %></td>
+        <td><%= formulario.fecha_inicio_ejecucion %></td>
+        <td><%= formulario.fecha_fin_ejecucion %></td>
+        <td><%= formulario.coord_latitud %></td>
+        <td><%= formulario.coord_longitud %></td>
+        <td><%= formulario.empleado_id %></td>
+        <td><%= formulario.usuario_id %></td>
+        <td><%= formulario.fecha_sincronizacion %></td>
+        <td><%= formulario.user_created_id %></td>
+        <td><%= formulario.user_updated_id %></td>
+        <td><%= formulario.usr_grab %></td>
+        <td><%= formulario.usr_modi %></td>
+        <td><%= formulario.estado %></td>
+        <td><%= link_to 'Show', formulario %></td>
+        <td><%= link_to 'Edit', edit_formulario_path(formulario) %></td>
+        <td><%= link_to 'Destroy', formulario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Formulario', new_formulario_path %>

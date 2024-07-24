@@ -1,0 +1,33 @@
+
+<%= simple_form_for(@formulario) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :config_formulario %>
+    <%= f.input :empresa_id %>
+    <%= f.input :area_id %>
+    <%= f.input :departamento_id %>
+    <%= f.input :seccion_id %>
+    <%= f.input :subseccion_id %>
+    <%= f.input :labor_oracle_id %>
+    <%= f.input :labor_madre_id %>
+    <%= f.input :ot_id %>
+    <%= f.input :fecha_inicio_ejecucion %>
+    <%= f.input :fecha_fin_ejecucion %>
+    <%= f.input :coord_latitud %>
+    <%= f.input :coord_longitud %>
+    <%= f.input :empleado_id %>
+    <%= f.input :usuario_id %>
+    <%= f.input :fecha_sincronizacion %>
+    <%= f.input :user_created_id %>
+    <%= f.input :user_updated_id %>
+    <%= f.input :usr_grab %>
+    <%= f.input :usr_modi %>
+    <%= f.input :estado %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

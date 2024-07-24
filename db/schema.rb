@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_16_203008) do
+ActiveRecord::Schema.define(version: 2024_07_24_164314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,33 @@ ActiveRecord::Schema.define(version: 2024_07_16_203008) do
     t.index ["tipo_formulario_id"], name: "idx_configForm_tipoForm"
   end
 
+  create_table "formularios", force: :cascade do |t|
+    t.bigint "config_formulario_id", null: false
+    t.integer "empresa_id"
+    t.integer "area_id"
+    t.integer "departamento_id"
+    t.integer "seccion_id"
+    t.integer "subseccion_id"
+    t.integer "labor_oracle_id"
+    t.integer "labor_madre_id"
+    t.integer "ot_id"
+    t.datetime "fecha_inicio_ejecucion"
+    t.datetime "fecha_fin_ejecucion"
+    t.text "coord_latitud"
+    t.text "coord_longitud"
+    t.integer "empleado_id"
+    t.integer "usuario_id"
+    t.datetime "fecha_sincronizacion"
+    t.integer "user_created_id"
+    t.integer "user_updated_id"
+    t.string "usr_grab", limit: 50
+    t.string "usr_modi", limit: 50
+    t.string "estado", limit: 10
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["config_formulario_id"], name: "index_formularios_on_config_formulario_id"
+  end
+
   create_table "tipo_formularios", id: :serial, comment: "Catálogo Tipo de Formulario", force: :cascade do |t|
     t.integer "empresa_id", null: false, comment: "Identificador de la empresa"
     t.integer "area_id", null: false, comment: "Identificador del área"
@@ -68,4 +95,5 @@ ActiveRecord::Schema.define(version: 2024_07_16_203008) do
 
   add_foreign_key "asignacion_formularios", "config_formularios", name: "fk_asignaForm_configForm"
   add_foreign_key "config_formularios", "tipo_formularios", name: "fk_configForm_tipoForm"
+  add_foreign_key "formularios", "config_formularios"
 end

@@ -1,0 +1,16 @@
+<!-- app/views/config_formularios/finish.html.erb -->
+<h1>Resumen del formulario</h1>
+
+<p>Formulario: <%= @config_formulario.nombre %></p>
+<p>¿Tiene AppSiga?: <%= @config_formulario.app_siga %></p>
+<p>Descripción: <%= @config_formulario.descripcion %></p>
+
+<h2>Asignaciones</h2>
+<% @config_formulario.asignacion_formularios.each do |asignacion| %>
+  <p>Departamento: <%= asignacion.departamento_id %></p>
+  <p>Sección: <%= asignacion.seccion_id %></p>
+  <p>SubSección: <%= asignacion.subseccion_id %></p>
+  <p>Empleado: <%= asignacion.empleado_id %></p>
+<% end %>
+
+<%= link_to "Volver al inicio", config_formularios_path %>

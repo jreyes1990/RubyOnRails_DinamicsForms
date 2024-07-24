@@ -1,0 +1,79 @@
+<!-- app/views/config_formularios/step.html.erb -->
+<h1>Paso <%= @step %></h1>
+
+<%= form_with(model: @config_formulario, url: step_config_formulario_path(@config_formulario, step: @step), method: :post) do |f| %>
+  <% if @step == 1 %>
+    <div>
+      <%= f.label :nombre, "Formulario" %>
+      <%= f.text_field :nombre %>
+    </div>
+    <div>
+      <%= f.label :app_siga, "¿Tiene AppSiga?" %>
+      <%= f.text_field :app_siga %>
+    </div>
+    <div>
+      <%= f.label :descripcion, "Descripción" %>
+      <%= f.text_area :descripcion %>
+    </div>
+  <% elsif @step == 2 %>
+    <h2>Asignación de formulario</h2>
+    <div id="asignacion_formularios">
+      <%= f.fields_for :asignacion_formularios do |asignacion_form| %>
+        <div class="nested-fields">
+          <div>
+            <%= asignacion_form.label :departamento_id %>
+            <%= asignacion_form.text_field :departamento_id %>
+          </div>
+          <div>
+            <%= asignacion_form.label :seccion_id %>
+            <%= asignacion_form.text_field :seccion_id %>
+          </div>
+          <div>
+            <%= asignacion_form.label :subseccion_id %>
+            <%= asignacion_form.text_field :subseccion_id %>
+          </div>
+          <div>
+            <%= asignacion_form.label :empleado_id %>
+            <%= asignacion_form.text_field :empleado_id %>
+          </div>
+          <%= link_to "Eliminar", '#', class: 'remove_fields' %>
+        </div>
+      <% end %>
+    </div>
+    <%= link_to "Agregar Asignación", '#', id: 'add_asignacion' %>
+
+    <!-- Template para nuevos campos -->
+    <script type="text/template" id="new_asignacion_template">
+      <div class="nested-fields">
+        <div>
+          <label for="config_formulario_asignacion_formularios_attributes_NEW_RECORD_departamento_id">Departamento</label>
+          <input type="text" name="config_formulario[asignacion_formularios_attributes][NEW_RECORD][departamento_id]" id="config_formulario_asignacion_formularios_attributes_NEW_RECORD_departamento_id" />
+        </div>
+
+        <div>
+          <label for="config_formulario_asignacion_formularios_attributes_NEW_RECORD_seccion_id">Sección</label>
+          <input type="text" name="config_formulario[asignacion_formularios_attributes][NEW_RECORD][seccion_id]" id="config_formulario_asignacion_formularios_attributes_NEW_RECORD_seccion_id" />
+        </div>
+
+        <div>
+          <label for="config_formulario_asignacion_formularios_attributes_NEW_RECORD_subseccion_id">Sub-Sección</label>
+          <input type="text" name="config_formulario[asignacion_formularios_attributes][NEW_RECORD][subseccion_id]" id="config_formulario_asignacion_formularios_attributes_NEW_RECORD_subseccion_id" />
+        </div>
+
+        <div>
+          <label for="config_formulario_asignacion_formularios_attributes_NEW_RECORD_empleado_id">Empleado</label>
+          <input type="text" name="config_formulario[asignacion_formularios_attributes][NEW_RECORD][empleado_id]" id="config_formulario_asignacion_formularios_attributes_NEW_RECORD_empleado_id" />
+        </div>
+
+        <%= link_to "Eliminar", '#', class: 'remove_fields' %>
+      </div>
+    </script>
+  <% end %>
+
+  <div>
+    <% if @step > 1 %>
+      <%= link_to 'Anterior', step_config_formulario_path(@config_formulario, step: @step - 1), class: 'button' %>
+    <% end %>
+    <%= f.submit "Siguiente" %>
+  </div>
+<% end %>

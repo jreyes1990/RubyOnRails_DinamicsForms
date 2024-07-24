@@ -1,0 +1,2 @@
+json.extract! formulario, :id, :config_formulario_id, :empresa_id, :area_id, :departamento_id, :seccion_id, :subseccion_id, :labor_oracle_id, :labor_madre_id, :ot_id, :fecha_inicio_ejecucion, :fecha_fin_ejecucion, :coord_latitud, :coord_longitud, :empleado_id, :usuario_id, :fecha_sincronizacion, :user_created_id, :user_updated_id, :usr_grab, :usr_modi, :estado, :created_at, :updated_at
+json.url formulario_url(formulario, format: :json)
