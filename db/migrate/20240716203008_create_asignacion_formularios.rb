@@ -35,7 +35,7 @@ class CreateAsignacionFormularios < ActiveRecord::Migration[6.0]
     # add_index :asignacion_formularios, [:empresa_id, :area_id, :departamento_id, :seccion_id, :subseccion_id, :empleado_id], name: "idx_asignaForm", unique: true
 
     # Agregar el índice único con el nombre personalizado en la combinación correcta de columnas
-    add_index :asignacion_formularios, [:config_formulario_id, :empresa_id, :area_id, :departamento_id, :seccion_id, :subseccion_id, :empleado_id], name: "idx_asignaForm_configForm", unique: true
+    add_index :asignacion_formularios, [:config_formulario_id, :empresa_id, :area_id, :departamento_id, :seccion_id, :subseccion_id, :empleado_id], name: "idx_asignaForm_configForm", unique: false
 
     # Agregar el constraint CHECK sin el punto y coma al final
     execute <<-SQL

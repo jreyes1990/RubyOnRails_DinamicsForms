@@ -82,39 +82,9 @@
                           <!-- ====================================== -->
                           <%= render 'config_formulario_fields', f: cfg_for %>
                           <!-- ====================================== -->
-                          
-                          <!-- INICIO DE LA ASIGNACIÓN DEL FORMULARIO -->
-                          <table class="table custom-table table-sm" id="<%= unique_config_form_id %>" width="100%" cellpadding="0" cellspacing="0" >
-                            <h3>Asignación de formulario</h3>
-                            <thead class="thead-light">
-                              <tr>
-                                <th class="col-3">Departamento</th>
-                                <th class="col-3">Seccion</th>
-                                <th class="col-3">SubSeccion</th>
-                                <th class="col-3">Empleado</th>
-                                <th class="col-auto"></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <% cfg_for.object.asignacion_formularios.where(estado: 'A').each do |asigna_formulario_activos| %>
-                                <%= cfg_for.simple_fields_for :asignacion_formularios, asigna_formulario_activos do |asig_for| %>
-                                    <%= render 'asignacion_formulario_fields', f: asig_for %>
-                                <% end %>
-                              <% end %>
-                            </tbody>
-                          </table>
-                          <div class="row">
-                            <div class="col">
-                              <div class="text-right">
-                                <%= link_to_add_association 'Agregar Asignación', cfg_for, :asignacion_formularios, data: {"association-insertion-node" => "##{unique_config_form_id} tbody", "association-insertion-method" => "append"}, class: "btn btn-success" %>
-                              </div>
-                            </div>
-                          </div>
                         </div>
-                        <br>
                       </div>
                     </div>
-                    <!-- FIN DE LA ASIGNACIÓN DEL FORMULARIO -->
                   <% end %>
                 <% end %>
                 <br>
@@ -130,7 +100,6 @@
             </div>
           </div>
           <!-- FIN DE LA CONFIGURACION DEL FORMULARIO -->
-
         </div>
 
         <div class="form-actions">

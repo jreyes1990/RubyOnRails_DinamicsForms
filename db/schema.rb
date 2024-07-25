@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2024_07_24_164314) do
     t.string "estado", limit: 5, default: "A", comment: "Estado de la asignación del formulario: [A]: Activo;  [I]: Inactivo"
     t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "Fecha y hora de creación del registro"
     t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "Fecha y hora de la última actualización del registro"
-    t.index ["config_formulario_id", "empresa_id", "area_id", "departamento_id", "seccion_id", "subseccion_id", "empleado_id"], name: "idx_asignaForm_configForm", unique: true
+    t.index ["config_formulario_id", "empresa_id", "area_id", "departamento_id", "seccion_id", "subseccion_id", "empleado_id"], name: "idx_asignaForm_configForm"
   end
 
   create_table "config_formularios", id: :serial, comment: "Catálogo Configuración de Formulario", force: :cascade do |t|
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2024_07_24_164314) do
     t.string "estado", limit: 5, default: "A", comment: "Estado de la configuración del formulario: [A]: Activo;  [I]: Inactivo"
     t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "Fecha y hora de creación del registro"
     t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "Fecha y hora de la última actualización del registro"
-    t.index ["tipo_formulario_id", "empresa_id", "area_id"], name: "idx_configForm_tipoForm", unique: true
+    t.index ["tipo_formulario_id", "empresa_id", "area_id"], name: "idx_configForm_tipoForm"
   end
 
   create_table "formularios", force: :cascade do |t|
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 2024_07_24_164314) do
     t.string "estado", limit: 5, default: "A", comment: "Estado del tipo de formulario: [A]: Activo;  [I]: Inactivo"
     t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "Fecha y hora de creación del registro"
     t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "Fecha y hora de la última actualización del registro"
-    t.index ["empresa_id", "area_id"], name: "idx_tipoForm_areaEmp", unique: true
+    t.index ["empresa_id", "area_id"], name: "idx_tipoForm_areaEmp"
   end
 
   add_foreign_key "asignacion_formularios", "config_formularios", name: "fk_asignaForm_configForm"

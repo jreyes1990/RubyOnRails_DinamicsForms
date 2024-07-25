@@ -1,4 +1,4 @@
-<table class="table custom-table table-sm"  width="100%" cellpadding="0" cellspacing="0">        
+<table class="table custom-table table-sm" id="table_config_form" width="100%" cellpadding="0" cellspacing="0">        
   <thead class="thead-light">
     <tr>
       <th class="col-3">Formulario</th>
@@ -24,3 +24,35 @@
     </tr>
   </tbody>
 </table>
+
+<!-- VARIABLE UNICA CONFIGURACIÓN DEL FORMULARIO -->
+<% unique_config_form_id = "config_form_#{f.object_id}" %>
+<!-- INICIO DE LA ASIGNACIÓN DEL FORMULARIO -->
+<table class="table custom-table table-sm" id="<%= unique_config_form_id %>" width="100%" cellpadding="0" cellspacing="0" >
+  <h3>Asignación de formulario</h3>
+  <thead class="thead-light">
+    <tr>
+      <th class="col-3">Departamento</th>
+      <th class="col-3">Seccion</th>
+      <th class="col-3">SubSeccion</th>
+      <th class="col-3">Empleado</th>
+      <th class="col-auto"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% f.object.asignacion_formularios.where(estado: 'A').each do |asigna_formulario_activos| %>
+      <%= f.simple_fields_for :asignacion_formularios, asigna_formulario_activos do |asig_for| %>
+          <%= render 'asignacion_formulario_fields', f: asig_for %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<div class="row">
+  <div class="col">
+    <div class="text-right">
+      <%= link_to_add_association 'Agregar Asignación', f, :asignacion_formularios, data: {"association-insertion-node" => "##{unique_config_form_id} tbody", "association-insertion-method" => "append"}, class: "btn btn-success" %>
+    </div>
+  </div>
+</div>
+<br>
+<!-- FIN DE LA ASIGNACIÓN DEL FORMULARIO -->
