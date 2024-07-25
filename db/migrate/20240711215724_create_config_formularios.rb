@@ -30,8 +30,11 @@ class CreateConfigFormularios < ActiveRecord::Migration[6.0]
     add_foreign_key :config_formularios, :tipo_formularios, column: :tipo_formulario_id, name: 'fk_configForm_tipoForm'
 
     # Agregar el índice único con el nombre personalizado
-    add_index :config_formularios, [:tipo_formulario_id], name: "idx_configForm_tipoForm", unique: false
-    add_index :config_formularios, [:empresa_id, :area_id], name: "idx_configForm", unique: false
+    # add_index :config_formularios, [:tipo_formulario_id], name: "idx_configForm_tipoForm", unique: false
+    # add_index :config_formularios, [:empresa_id, :area_id], name: "idx_configForm", unique: false
+
+    # Agregar el índice único con el nombre personalizado en la combinación correcta de columnas
+    add_index :config_formularios, [:tipo_formulario_id, :empresa_id, :area_id], name: "idx_configForm_tipoForm", unique: true
 
     # Agregar el constraint CHECK sin el punto y coma al final
     execute <<-SQL

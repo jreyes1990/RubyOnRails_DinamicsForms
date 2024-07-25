@@ -25,7 +25,7 @@ class CreateTipoFormularios < ActiveRecord::Migration[6.0]
     SQL
 
     # Agregar el índice único con el nombre personalizado
-    add_index :tipo_formularios, [:empresa_id, :area_id], name: "idx_tipoForm_areaEmp", unique: false
+    add_index :tipo_formularios, [:empresa_id, :area_id], name: "idx_tipoForm_areaEmp", unique: true
 
     # Agregar el constraint CHECK sin el punto y coma al final
     execute <<-SQL
